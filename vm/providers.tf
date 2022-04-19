@@ -8,13 +8,8 @@ terraform {
       version = "~>2.0"
     }
   }
-   backend "azurerm" {
-    resource_group_name  = "MyRg"
-    storage_account_name = "storage1509"
-    container_name       = "container1509"
-    key                  = "terraform.tfstate"
-  }
-}
+   
+
 }
 
 provider "azurerm" {

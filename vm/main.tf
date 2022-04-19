@@ -6,6 +6,13 @@ resource "azurerm_resource_group" "rg" {
   name      = random_pet.rg-name.id
   location  = var.resource_group_location
 }
+backend "azurerm" {
+    resource_group_name  = "MyRg"
+    storage_account_name = "storage1509"
+    container_name       = "container1509"
+    key                  = "vm.tfstate"
+  }
+}
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {

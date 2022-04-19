@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'vm creation'
  
 on:
   push:

@@ -12,7 +12,6 @@ backend "azurerm" {
     container_name       = "container1509"
     key                  = "vm.tfstate"
   }
-}
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {

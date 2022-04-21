@@ -100,6 +100,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   computer_name                   = "myvm1"
   admin_username                  = "azureuser"
   disable_password_authentication = false
-  admin_password                  = "Pass@321vksoni
+  admin_password                  = "Pass@321vksoni"
 
 }

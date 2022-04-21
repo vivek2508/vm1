@@ -80,6 +80,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
   size                  = "Standard_DC16ds_v3"
   zone                  = 2
+  generation            = 2
   
 
   

@@ -103,6 +103,9 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
   size                  = "Standard_DC1ds_v3"
+  generation = 2
+  size = var.azureInstanceType
+  
 
   os_disk {
     name                 = "myOsDisk"

@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   source_image_reference {
    publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "18_04-lts-gen2"
+    sku       = "16_04-lts"
     version   = "latest"
   }
 

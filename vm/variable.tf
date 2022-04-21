@@ -4,6 +4,6 @@ variable "resource_group_name_prefix" {
 }
 
 variable "resource_group_location" {
-  default       = "westeurope"
+  default       = "centralindia"
   description   = "Location of the resource group."
 }

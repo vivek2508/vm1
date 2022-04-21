@@ -95,6 +95,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
    offer                 = "0001-com-ubuntu-server-focal"
    publisher             = "Canonical"
    sku                   = "20.04-lts-gen2"
+   version               = "latest"
   }
 
   computer_name                   = "myvm1"

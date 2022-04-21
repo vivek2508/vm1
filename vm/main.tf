@@ -80,7 +80,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
   size                  = "Standard_DC16ds_v3"
   zone                  = 2
-  generation            = 2
+#   generation            = 2
   
 
   
@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   source_image_reference {
    offer                 = "0001-com-ubuntu-server-focal"
    publisher             = "Canonical"
-   sku                   = "20_04-lts-gen2"
+   sku                   = "20.04-lts-gen2"
   }
 
   computer_name                   = "myvm1"

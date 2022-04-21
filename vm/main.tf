@@ -78,8 +78,8 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
-  size                  = "Standard_D64ads_v5"
-#   zone                  = 1
+  size                  = "Standard_DC16ds_v3"
+  zone                  = 2
   
 
   

@@ -92,10 +92,9 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   }
 
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+   offer                 = "0001-com-ubuntu-server-focal"
+   publisher             = "Canonical"
+   sku                   = "20_04-lts-gen2"
   }
 
   computer_name                   = "myvm1"

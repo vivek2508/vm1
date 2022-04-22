@@ -78,7 +78,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
-  size                  = "Standard_D4"
+  size                  = "Standard_D2s_v3"
   zone                  = 2
 #   generation            = 2
   
@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "18.04-lts"
+    sku       = "18.04-lts-gen2"
     version   = "latest"
     
   }

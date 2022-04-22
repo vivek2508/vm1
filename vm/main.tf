@@ -94,8 +94,23 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   computer_name                   = "myvm"
   admin_username                  = "azureuser"
   disable_password_authentication = false
-  admin_password                  = "Password@321"
+  admin_password                  = var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : var.admin_password
 
 
   
 }
+resource "azurerm_role_assignment" "vm-role" {
+  for_each = { for rbac in var.rbac : "${rbac.principal_id}-${rbac.role}" => rbac }
+
+  scope                = azurerm_windows_virtual_machine.windows[0].id
+  principal_id         = each.value.principal_id
+  role_definition_name = each.value.role
+}
+
+resource "azurerm_role_assignment" "nic-role" {
+  for_each = { for rbac in var.rbac : "${rbac.principal_id}-${rbac.role}" => rbac }
+
+  scope                = azurerm_network_interface.main.id
+  principal_id         = each.value.principal_id
+  role_definition_name = each.value.role
+  }

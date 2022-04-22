@@ -83,13 +83,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
-  dynamic "admin_ssh_key" {
-    for_each = var.disable_password_authentication ? [1] : []
-    content {
-      username   = var.admin_username
-      public_key = var.admin_ssh_key_data == null ? tls_private_key.key[0].public_key_openssh : file(var.admin_ssh_key_data)
-    }
-  }
+  
 
   source_image_reference {
     publisher = "Canonical"
@@ -101,23 +95,9 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   computer_name                   = "myvm"
   admin_username                  = "azureuser"
   disable_password_authentication = false
-  admin_password                  = var.admin_password == null ? element(concat(random_password.passwd.*.result, [""]), 0) : var.admin_password
+  admin_password                  = "Password@321"
 
 
   
 }
-resource "azurerm_role_assignment" "vm-role" {
-  for_each = { for rbac in var.rbac : "${rbac.principal_id}-${rbac.role}" => rbac }
 
-  scope                = azurerm_windows_virtual_machine.windows[0].id
-  principal_id         = each.value.principal_id
-  role_definition_name = each.value.role
-}
-
-resource "azurerm_role_assignment" "nic-role" {
-  for_each = { for rbac in var.rbac : "${rbac.principal_id}-${rbac.role}" => rbac }
-
-  scope                = azurerm_network_interface.main.id
-  principal_id         = each.value.principal_id
-  role_definition_name = each.value.role
-  }

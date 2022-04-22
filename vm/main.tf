@@ -83,6 +83,13 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
+  dynamic "admin_ssh_key" {
+    for_each = var.disable_password_authentication ? [1] : []
+    content {
+      username   = var.admin_username
+      public_key = var.admin_ssh_key_data == null ? tls_private_key.key[0].public_key_openssh : file(var.admin_ssh_key_data)
+    }
+  }
 
   source_image_reference {
     publisher = "Canonical"
